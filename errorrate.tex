@@ -1,0 +1,44 @@
+\documentclass{standalone}
+    \usepackage{tikz}
+    \usepackage{pgfplots}
+\begin{document}
+
+\begin{tikzpicture}
+    \begin{axis}[
+            xmode=log,
+            ymode=linear,
+            xlabel=Number of Ciphertexts,
+            ylabel=Average Error Rate,
+            grid=both,
+            minor grid style={gray!25},
+            major grid style={gray!25},
+            width=\linewidth,
+            height=7.5cm,
+            legend style={at={(0.1,0.5)},anchor=north west}
+        ]
+        % \addplot[line width=1pt,solid,color=blue]
+        % table[x=T,y=max,col sep=comma]{data/n-1-error-rate.csv};
+        % \addlegendentry{max}
+        \addplot[line width=1pt,solid,color=red]
+        table[x=T,y=min,col sep=comma]{data/errorrate/n-1-error-rate.csv};
+        \addlegendentry{Case 1-$\mathrm{value}_{\min}$}
+
+        \addplot[line width=1pt,solid,color=cyan]
+        table[x=T,y=min,col sep=comma]{data/errorrate/1-error-rate.csv};
+        \addlegendentry{Case 2-$\mathrm{value}_{\min}$}
+
+        \addplot[line width=1pt,solid,color=blue]
+        table[x=T,y=max,col sep=comma]{data/errorrate/1-error-rate.csv};
+        \addlegendentry{Case 2-$\mathrm{value}_{\max}$}
+
+        \addplot[line width=1pt,solid,color=green]
+        table[x=T,y=min,col sep=comma]{data/errorrate/0.5346-error-rate.csv};
+        \addlegendentry{Case 3-$\mathrm{value}_{\min}$}
+
+        \addplot[line width=1pt,solid,color=purple]
+        table[x=T,y=max,col sep=comma]{data/errorrate/0.5346-error-rate.csv};
+        \addlegendentry{Case 3-$\mathrm{value}_{\max}$}
+    \end{axis}
+
+\end{tikzpicture}
+\end{document}

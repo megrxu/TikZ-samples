@@ -1,3 +1,6 @@
-# My TikZ
+# My TikZ Samples
 
-`fft4.tex` is a Radix-4 FFT signal flow diagram.
+Write your lossless images with TikZ!
+
+- `fft4.tex` is a radix-4 FFT signal flow diagram.
+- `errorrate.tex` is a diagram which read data from csv files.
