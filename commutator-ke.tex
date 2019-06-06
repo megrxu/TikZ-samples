@@ -1,0 +1,22 @@
+\documentclass{standalone}
+    \usepackage[all]{xy}
+    \usepackage{xcolor}
+
+\definecolor{darkpastelgreen}{rgb}{0.01, 0.75, 0.24}
+\definecolor{darkpastelred}{rgb}{0.76, 0.23, 0.13}
+\newcommand{\pri}[1]{{\textcolor{darkpastelred}{#1}}}
+\newcommand{\pub}[1]{{\textcolor{darkpastelgreen}{#1}}}
+
+\begin{document}
+    $$
+    \xymatrix@R-1.5pc{
+    \textbf{Alice}                                              & \textbf{Public}                              & \textbf{Bob}                        \\
+    \pri{v}(x_1, \cdots, x_k) \in F_k                           & \pub{a_1}, \cdots, \pub{a_k} \in \pub{G}     & \pri{w}(x_1, \cdots, a_k) \in F_k   \\
+    \pri{a} = \pri{v}(a_1, \cdots, a_k)                         & \pub{b_1}, \cdots, \pub{b_k} \in \pub{G}     & \pri{b} = \pri{w}(a_1, \cdots, a_k) \\
+    \ar '[r] [rr]                                               & \pub{b_1}^\pri{a}, \cdots, \pub{b_k}^\pri{a} &                                     \\
+                                                                & \pub{a_1}^\pri{b}, \cdots, \pub{a_k}^\pri{b} & \ar '[l] [ll]                       \\
+    \pri{a^{-1}v}(\pub{a_1}^\pri{b}, \cdots, \pub{a_1}^\pri{b}) &                                              &
+    \pri{w}(\pub{b_1}^\pri{a}, \cdots, \pub{b_1}^\pri{a})^{-1}\pri{b}
+    }
+    $$
+\end{document}
