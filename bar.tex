@@ -1,0 +1,43 @@
+\documentclass{standalone}
+    \usepackage{tikz}
+    \usepackage{pgfplots}
+\begin{document}
+
+% Style to select only points from #1 to #2 (inclusive)
+\pgfplotsset{select coords between index/.style 2 args={
+    x filter/.code={
+        \ifnum\coordindex<#1\def\pgfmathresult{}\fi
+        \ifnum\coordindex>#2\def\pgfmathresult{}\fi
+    }
+}}
+
+\begin{tikzpicture}
+    \begin{axis}[
+            ybar,
+            ymode=log,
+            log origin=infty,
+            log ticks with fixed point,
+            point meta=rawy,
+            xlabel=Number of Ciphertexts,
+            ylabel=Time/s,
+            grid=both,
+            minor grid style={gray!25},
+            major grid style={gray!25},
+            width=\linewidth,
+            height=7.5cm,
+            width=12cm,
+            bar width=0.3cm,
+            nodes near coords={\footnotesize{\pgfmathprintnumber[fixed,precision=2]{\pgfplotspointmeta}}},
+        ]
+
+        \addplot[draw=none, fill=red!50, select coords between index={1}{6}]
+        table[x=amount,y=validate_tuples_time, col sep=comma]{data/bar/cpu.csv};
+        \addlegendentry{Attack Time(CPU)}
+
+        \addplot[draw=none, fill=blue!50, select coords between index={1}{6}]
+        table[x=amount,y=validate_tuples_time, col sep=comma]{data/bar/gpu.csv};
+        \addlegendentry{Attack Time(GPU)}
+    \end{axis}
+
+\end{tikzpicture}
+\end{document}
